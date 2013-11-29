@@ -4,6 +4,7 @@ package legacy.hedge; /**
  */
 
 import legacy.dto.ErrorLevel;
+import legacy.hedge.prduct.ProductDict;
 import legacy.persistence.AuditedField;
 import legacy.persistence.BaseDTO;
 import legacy.persistence.StorageActionEnum;
@@ -55,6 +56,8 @@ public class HedgingPosition extends BaseDTO implements Position {
 
 	private double basprx = 100;
 	private Date daprx;
+    private long prductdId;
+
 	/******************** Input Valuation Data *********************/
 	private String quantity;
 
@@ -74,11 +77,11 @@ public class HedgingPosition extends BaseDTO implements Position {
 	/**
 	 * HedgingPosition Constructor
 	 */
-	public HedgingPosition() {
-
+	public HedgingPosition(ProductDict prductd) {
+        this.prductdId = prductd.getId();
 	}
 
-	/**
+    /**
 	 * @return the transactionId
 	 */
 	@Override

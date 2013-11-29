@@ -62,17 +62,17 @@ public class HedgingPositionManagementImpl implements IHedgingPositionManagement
 			result = hedgePositionBySendTo3rdParty(hp);
 			if(result.isCheckIsOk()) {
 				hp = result.getResult();
-				hp.setStatus(HedgingPositionStatusConst.HEDGED);
+				hp.setStatus(new HedgingPositionStatusConst(HedgingPositionStatusConst.HEDGED).load());
 				updateHedgingPosition(hp);
 			} else {
 				hp = result.getResult();
 				switch(hp.getErrorLevel()){
 					case FUNCTIONAL_ERROR:{
-						hp.setStatus(HedgingPositionStatusConst.REJECTED);
+						hp.setStatus(new HedgingPositionStatusConst(HedgingPositionStatusConst.REJECTED));
 						break;
 					}
 					case CONNECT_ERROR: {
-						hp.setStatus(HedgingPositionStatusConst.REJECTED);
+						hp.setStatus(new HedgingPositionStatusConst(HedgingPositionStatusConst.REJECTED));
 						break;
 					}
 					case BOOKING_MALFUNCTION: {
